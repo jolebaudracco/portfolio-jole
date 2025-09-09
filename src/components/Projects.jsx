@@ -12,7 +12,6 @@ const Projects = () => {
     {
       title: 'Task Manager App',
       description: 'A full-stack MERN application to create, edit, delete and manage tasks. Features include CRUD operations, responsive UI, and persistent storage via MongoDB.',
-      liveUrl: 'https://mern-jole.onrender.com/',
       githubUrl: 'https://github.com/jolebaudracco/mern-Jole',
       image: taskManagerImag
     },
@@ -74,7 +73,7 @@ const Projects = () => {
               {project.description}
             </Typography>
             <Box sx={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-              <Button
+              {project.liveUrl && <Button
                 variant="contained"
                 color="primary"
                 endIcon={<OpenInNewIcon />}
@@ -82,7 +81,7 @@ const Projects = () => {
                 target="_blank"
               >
                 View Project
-              </Button>
+              </Button>}
               <Button
                 variant="outlined"
                 endIcon={<GitHubIcon />}
