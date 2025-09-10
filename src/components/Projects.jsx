@@ -29,31 +29,46 @@ const Projects = () => {
       <Typography
         variant="h4"
         sx={{
-            fontSize: "40px",
-            marginBottom: "30px",
-            color: "#ffffff",
-            fontFamily: "'Orbitron', sans-serif",
-            textShadow: "0 0 10px #000, 0 0 20px #00e0ff",
-            fontWeight: 700,
-            textAlign: "center"
+          fontSize: { xs: "28px", md: "40px" },
+          marginBottom: "30px",
+          color: "#ffffff",
+          fontFamily: "'Orbitron', sans-serif",
+          textShadow: "0 0 10px #000, 0 0 20px #00e0ff",
+          fontWeight: 700,
+          textAlign: "center"
         }}
-        >
+      >
         Projects
-        </Typography>
+      </Typography>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '2rem' }}>
+      {/* Contenedor */}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          gap: '2rem',
+
+          // SOLO MOBILE: scroll vertical
+          flexDirection: { xs: 'row', md: 'row' },
+          maxHeight: { xs: '80vh', md: 'none' }, // límite de altura en mobile
+          overflowY: { xs: 'auto', md: 'visible' }, // scroll en mobile
+          paddingRight: { xs: '0.5rem', md: 1 } // un poco de padding para que no corte
+        }}
+      >
         {projects.map((project, index) => (
           <Box
             key={index}
             sx={{
-              width: '340px',
+              width: { xs: '85%', sm: '80%', md: '340px' },
               padding: '1.5rem',
               borderRadius: '16px',
               backgroundColor: '#fff',
               boxShadow: '4px 6px 12px rgba(0,0,0,0.2)',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center'
+              alignItems: 'center',
+              flexShrink: 0 // evita que se achiquen al scrollear
             }}
           >
             <Box
@@ -62,26 +77,41 @@ const Projects = () => {
               alt={project.title}
               sx={{
                 width: '100%',
-                height: '200px',
+                height: { xs: '160px', md: '200px' },
                 objectFit: 'cover',
                 borderRadius: '12px',
                 marginBottom: '1rem'
               }}
             />
-            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{project.title}</Typography>
-            <Typography variant="body2" sx={{ margin: '0.5rem 0', color: '#555' }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
+              {project.title}
+            </Typography>
+            <Typography
+              variant="body3"
+              sx={{ margin: '0.5rem 0', color: '#555', textAlign: 'center' }}
+            >
               {project.description}
             </Typography>
-            <Box sx={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-              {project.liveUrl && <Button
-                variant="contained"
-                color="primary"
-                endIcon={<OpenInNewIcon />}
-                href={project.liveUrl}
-                target="_blank"
-              >
-                View Project
-              </Button>}
+            <Box
+              sx={{
+                display: 'flex',
+                gap: '1rem',
+                marginTop: '1rem',
+                flexWrap: 'wrap',
+                justifyContent: 'center'
+              }}
+            >
+              {project.liveUrl && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<OpenInNewIcon />}
+                  href={project.liveUrl}
+                  target="_blank"
+                >
+                  View Project
+                </Button>
+              )}
               <Button
                 variant="outlined"
                 endIcon={<GitHubIcon />}
