@@ -16,17 +16,23 @@ function App(){
   return (
     <>
     {/* Caja Maestra */}
-      <Box sx={{
-        background: 'linear-gradient(to right, #2c2c2c 0%, #eeeeee 50%, #2c2c2c 100%)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '100vh',
-        minWidth: '100vw',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      <Box sx={(theme) => ({
+    background: 'linear-gradient(to right, #2c2c2c 0%, #eeeeee 50%, #2c2c2c 100%)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: '100vh',
+    minWidth: '100vw',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    px: 2, // padding lateral para que no quede pegado en mobile
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'flex-start', // que los componentes no se queden todos al medio
+      paddingTop: theme.spacing(4), // un poco de espacio arriba
+    },
+  })}
+>
         {selectedScreen === "home" && <Home /> }
         {selectedScreen === "about me" && <AboutMe /> }
         {selectedScreen === "certifications" && <Certifications /> }
